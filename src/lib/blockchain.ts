@@ -13,6 +13,25 @@ export interface InspectionReport {
   checker_id: string;
   nfc_token: string;
   image_hash: string;
+  checklist: {
+    paved_road_info: {
+      street: boolean;
+      type: boolean;
+      annexed: boolean;
+    };
+    road_surface_condition: {
+      surface_defects: boolean;
+      surface_deformation: boolean;
+      cracks: boolean;
+      patches_potholes: boolean;
+      drainage: boolean;
+    };
+    vegetation: {
+      vegetation_present: boolean;
+      encroachment_overgrowth: boolean;
+    };
+    rating: number | null;
+  };
   timestamp: number;
   timestamp_hour: number;
 }

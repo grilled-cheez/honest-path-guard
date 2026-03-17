@@ -133,6 +133,12 @@ const CommandCenter = ({ waypoints, chain, violations }: CommandCenterProps) => 
                           ID: <span className="text-foreground">{report.checker_id}</span>
                         </div>
                       )}
+                      <div className="text-muted-foreground">
+                        RATING:{" "}
+                        <span className="text-foreground">
+                          {report.checklist?.rating ?? "—"}
+                        </span>
+                      </div>
                       {showGps && (
                         <>
                           <div className="text-muted-foreground">

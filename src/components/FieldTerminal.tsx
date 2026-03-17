@@ -26,6 +26,18 @@ const FieldTerminal = ({
   const [photoTaken, setPhotoTaken] = useState(false);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [checklist, setChecklist] = useState<InspectionReport["checklist"]>({
+    paved_road_info: { street: false, type: false, annexed: false },
+    road_surface_condition: {
+      surface_defects: false,
+      surface_deformation: false,
+      cracks: false,
+      patches_potholes: false,
+      drainage: false,
+    },
+    vegetation: { vegetation_present: false, encroachment_overgrowth: false },
+    rating: null,
+  });
 
   const allComplete = currentStep >= waypoints.length;
   const target = allComplete ? null : waypoints[currentStep];
@@ -81,6 +93,7 @@ const FieldTerminal = ({
         checker_id: "INSP_082",
         nfc_token: target.nfc_token,
         image_hash: generateImageHash(),
+        checklist,
         timestamp: Date.now(),
         timestamp_hour: now.getHours(),
       };
@@ -93,6 +106,18 @@ const FieldTerminal = ({
       setNfcInput("");
       setNfcVerified(false);
       setPhotoTaken(false);
+      setChecklist({
+        paved_road_info: { street: false, type: false, annexed: false },
+        road_surface_condition: {
+          surface_defects: false,
+          surface_deformation: false,
+          cracks: false,
+          patches_potholes: false,
+          drainage: false,
+        },
+        vegetation: { vegetation_present: false, encroachment_overgrowth: false },
+        rating: null,
+      });
       setError("");
     } catch (err) {
       setError((err as Error).message);
@@ -134,67 +159,207 @@ const FieldTerminal = ({
         </span>
       </div>
 
-      {/* Static checklist */}
+      {/* Checklist (stored on-chain) */}
       <div className="bg-card border border-border rounded p-4 space-y-3">
         <div className="flex items-center justify-between">
-          <span className="font-mono text-xs tracking-widest text-muted-foreground">ROAD INSPECTION CHECKLIST (STATIC)</span>
-          <span className="font-mono text-[10px] text-muted-foreground">REF: PAPER CHECKLIST</span>
+          <span className="font-mono text-xs tracking-widest text-muted-foreground">ROAD INSPECTION CHECKLIST</span>
+          <span className="font-mono text-[10px] text-muted-foreground">ON-CHAIN</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="bg-secondary rounded p-3 space-y-2">
             <span className="font-mono text-[10px] text-muted-foreground tracking-widest">PAVED ROAD INFO</span>
-            {["Street", "Type", "Annexed"].map((label) => (
-              <label key={label} className="flex items-center gap-2 font-mono text-[11px]">
-                <input type="checkbox" disabled className="accent-primary" />
-                <span>{label}</span>
-              </label>
-            ))}
+            <label className="flex items-center gap-2 font-mono text-[11px]">
+              <input
+                type="checkbox"
+                checked={checklist.paved_road_info.street}
+                onChange={(e) =>
+                  setChecklist((prev) => ({
+                    ...prev,
+                    paved_road_info: { ...prev.paved_road_info, street: e.target.checked },
+                  }))
+                }
+                className="accent-primary"
+              />
+              <span>Street</span>
+            </label>
+            <label className="flex items-center gap-2 font-mono text-[11px]">
+              <input
+                type="checkbox"
+                checked={checklist.paved_road_info.type}
+                onChange={(e) =>
+                  setChecklist((prev) => ({
+                    ...prev,
+                    paved_road_info: { ...prev.paved_road_info, type: e.target.checked },
+                  }))
+                }
+                className="accent-primary"
+              />
+              <span>Type</span>
+            </label>
+            <label className="flex items-center gap-2 font-mono text-[11px]">
+              <input
+                type="checkbox"
+                checked={checklist.paved_road_info.annexed}
+                onChange={(e) =>
+                  setChecklist((prev) => ({
+                    ...prev,
+                    paved_road_info: { ...prev.paved_road_info, annexed: e.target.checked },
+                  }))
+                }
+                className="accent-primary"
+              />
+              <span>Annexed</span>
+            </label>
           </div>
 
           <div className="bg-secondary rounded p-3 space-y-2">
             <span className="font-mono text-[10px] text-muted-foreground tracking-widest">VEGETATION</span>
-            {["Vegetation present", "Encroachment / overgrowth"].map((label) => (
-              <label key={label} className="flex items-center gap-2 font-mono text-[11px]">
-                <input type="checkbox" disabled className="accent-primary" />
-                <span>{label}</span>
-              </label>
-            ))}
+            <label className="flex items-center gap-2 font-mono text-[11px]">
+              <input
+                type="checkbox"
+                checked={checklist.vegetation.vegetation_present}
+                onChange={(e) =>
+                  setChecklist((prev) => ({
+                    ...prev,
+                    vegetation: { ...prev.vegetation, vegetation_present: e.target.checked },
+                  }))
+                }
+                className="accent-primary"
+              />
+              <span>Vegetation present</span>
+            </label>
+            <label className="flex items-center gap-2 font-mono text-[11px]">
+              <input
+                type="checkbox"
+                checked={checklist.vegetation.encroachment_overgrowth}
+                onChange={(e) =>
+                  setChecklist((prev) => ({
+                    ...prev,
+                    vegetation: { ...prev.vegetation, encroachment_overgrowth: e.target.checked },
+                  }))
+                }
+                className="accent-primary"
+              />
+              <span>Encroachment / overgrowth</span>
+            </label>
           </div>
 
           <div className="bg-secondary rounded p-3 space-y-2 sm:col-span-2">
             <span className="font-mono text-[10px] text-muted-foreground tracking-widest">ROAD SURFACE CONDITION</span>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {[
-                "Surface defects",
-                "Surface deformation",
-                "Cracks",
-                "Patches & potholes",
-                "Drainage",
-              ].map((label) => (
-                <label key={label} className="flex items-center gap-2 font-mono text-[11px]">
-                  <input type="checkbox" disabled className="accent-primary" />
-                  <span>{label}</span>
-                </label>
-              ))}
+              <label className="flex items-center gap-2 font-mono text-[11px]">
+                <input
+                  type="checkbox"
+                  checked={checklist.road_surface_condition.surface_defects}
+                  onChange={(e) =>
+                    setChecklist((prev) => ({
+                      ...prev,
+                      road_surface_condition: {
+                        ...prev.road_surface_condition,
+                        surface_defects: e.target.checked,
+                      },
+                    }))
+                  }
+                  className="accent-primary"
+                />
+                <span>Surface defects</span>
+              </label>
+              <label className="flex items-center gap-2 font-mono text-[11px]">
+                <input
+                  type="checkbox"
+                  checked={checklist.road_surface_condition.surface_deformation}
+                  onChange={(e) =>
+                    setChecklist((prev) => ({
+                      ...prev,
+                      road_surface_condition: {
+                        ...prev.road_surface_condition,
+                        surface_deformation: e.target.checked,
+                      },
+                    }))
+                  }
+                  className="accent-primary"
+                />
+                <span>Surface deformation</span>
+              </label>
+              <label className="flex items-center gap-2 font-mono text-[11px]">
+                <input
+                  type="checkbox"
+                  checked={checklist.road_surface_condition.cracks}
+                  onChange={(e) =>
+                    setChecklist((prev) => ({
+                      ...prev,
+                      road_surface_condition: {
+                        ...prev.road_surface_condition,
+                        cracks: e.target.checked,
+                      },
+                    }))
+                  }
+                  className="accent-primary"
+                />
+                <span>Cracks</span>
+              </label>
+              <label className="flex items-center gap-2 font-mono text-[11px]">
+                <input
+                  type="checkbox"
+                  checked={checklist.road_surface_condition.patches_potholes}
+                  onChange={(e) =>
+                    setChecklist((prev) => ({
+                      ...prev,
+                      road_surface_condition: {
+                        ...prev.road_surface_condition,
+                        patches_potholes: e.target.checked,
+                      },
+                    }))
+                  }
+                  className="accent-primary"
+                />
+                <span>Patches & potholes</span>
+              </label>
+              <label className="flex items-center gap-2 font-mono text-[11px]">
+                <input
+                  type="checkbox"
+                  checked={checklist.road_surface_condition.drainage}
+                  onChange={(e) =>
+                    setChecklist((prev) => ({
+                      ...prev,
+                      road_surface_condition: {
+                        ...prev.road_surface_condition,
+                        drainage: e.target.checked,
+                      },
+                    }))
+                  }
+                  className="accent-primary"
+                />
+                <span>Drainage</span>
+              </label>
             </div>
           </div>
         </div>
 
         <div className="bg-secondary rounded p-3">
           <span className="font-mono text-[10px] text-muted-foreground tracking-widest block mb-2">RATING SCALE</span>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 font-mono text-[11px] text-muted-foreground">
-            <div>1: FAILED</div>
-            <div>2: VERY POOR</div>
-            <div>3: POOR</div>
-            <div>4: FAIR</div>
-            <div>5: FAIR</div>
-            <div>6: GOOD</div>
-            <div>7: GOOD</div>
-            <div>8: VERY GOOD</div>
-            <div>9: EXCELLENT</div>
-            <div>10: EXCELLENT</div>
+          <div className="grid grid-cols-5 gap-2">
+            {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+              <button
+                key={n}
+                type="button"
+                onClick={() => setChecklist((prev) => ({ ...prev, rating: n }))}
+                className={`rounded border px-2 py-2 font-mono text-xs transition-colors ${
+                  checklist.rating === n ? "bg-primary text-primary-foreground border-primary" : "bg-background border-border hover:border-primary"
+                }`}
+                aria-pressed={checklist.rating === n}
+              >
+                {n}
+              </button>
+            ))}
           </div>
+          <p className="mt-2 font-mono text-[10px] text-muted-foreground">
+            Selected:{" "}
+            <span className="text-foreground">
+              {checklist.rating === null ? "—" : checklist.rating}
+            </span>
+          </p>
         </div>
       </div>
 

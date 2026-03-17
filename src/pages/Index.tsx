@@ -52,11 +52,11 @@ const Index = () => {
           <div className="flex items-center justify-center gap-3 mb-2">
             <Shield className="w-8 h-8 text-verified" />
             <h1 className="font-mono text-2xl lg:text-3xl font-bold tracking-[0.2em]">
-              VIGILANCE
+              P.R.A.M.A.N
             </h1>
           </div>
           <p className="font-mono text-xs text-muted-foreground tracking-widest max-w-md">
-            ZERO-TRUST ROAD INSPECTION SYSTEM — SELECT ACCESS LEVEL
+            PUBLIC ROAD AUDIT AND MAPPING ANALYSIS NETWORK — SELECT ACCESS LEVEL
           </p>
 
           <div className="grid md:grid-cols-2 gap-4 max-w-2xl">
@@ -100,7 +100,7 @@ const Index = () => {
           className="flex items-center gap-2 hover:text-verified transition-colors"
         >
           <Shield className="w-4 h-4 text-verified" />
-          <span className="font-mono text-xs tracking-wider">VIGILANCE</span>
+          <span className="font-mono text-xs tracking-wider">P.R.A.M.A.N</span>
         </button>
         <div className="flex items-center gap-3">
           <ThemeToggle />

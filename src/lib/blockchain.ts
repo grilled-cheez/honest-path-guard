@@ -1,5 +1,5 @@
 // ============================================================
-// VIGILANCE IMMUTABLE LEDGER
+// P.R.A.M.A.N IMMUTABLE LEDGER
 // A lightweight blockchain implementation for tamper-proof
 // inspection record storage. Each block contains a SHA-256
 // hash linking it to the previous block, making any
@@ -105,7 +105,7 @@ export function createGenesisBlock(): Block {
   const block: Omit<Block, "hash"> = {
     index: 0,
     timestamp: Date.now(),
-    data: "GENESIS_BLOCK::VIGILANCE_SYSTEM_ACTIVE",
+    data: "GENESIS_BLOCK::PRAMAN_SYSTEM_ACTIVE",
     previousHash: "0".repeat(64),
     nonce: 0,
   };

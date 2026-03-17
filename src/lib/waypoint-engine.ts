@@ -1,5 +1,5 @@
 // ============================================================
-// VIGILANCE RANDOMIZATION ENGINE
+// P.R.A.M.A.N RANDOMIZATION ENGINE
 // Generates cryptographically-seeded waypoints along a road
 // vector in Ahmedabad. Waypoints are dynamically generated
 // and NFC tokens are SHA-256 derived for physical verification.
@@ -41,7 +41,7 @@ export function generateWaypoints(
     const latOffset = progress * (roadLengthKm * 0.009) * (0.7 + Math.random() * 0.6) - roadLengthKm * 0.009 * 0.25;
     const lngOffset = progress * (roadLengthKm * 0.009) * (0.3 + Math.random() * 0.4);
 
-    const nfcToken = generateNfcToken(`vigilance_marker_${i}_${Date.now()}`);
+    const nfcToken = generateNfcToken(`praman_marker_${i}_${Date.now()}`);
 
     waypoints.push({
       id: i + 1,

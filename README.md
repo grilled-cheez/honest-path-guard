@@ -1,4 +1,4 @@
-# Honest Path Guard (VIGILANCE)
+# P.R.A.M.A.N: Public Road Audit and Mapping Analysis Network
 
 Zero-trust road inspection demo app with:
 - **Field Worker** flow: NFC verification, photo capture simulation, interactive road-condition checklist, and on-chain inspection submission

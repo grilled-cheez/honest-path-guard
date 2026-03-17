@@ -1,5 +1,5 @@
 // ============================================================
-// VIGILANCE OPA POLICY ENGINE (Client-side simulation)
+// P.R.A.M.A.N OPA POLICY ENGINE (Client-side simulation)
 // Implements the Zero-Trust inspection_policy.rego logic.
 // In production, this runs on a separate OPA server.
 // Every submission is validated BEFORE it touches the ledger.
@@ -88,7 +88,7 @@ export function evaluatePolicy(input: PolicyInput): PolicyResult {
 }
 
 // Generate the Rego policy file content (for display)
-export const REGO_POLICY = `package vigilance.authz
+export const REGO_POLICY = `package praman.authz
 
 import future.keywords.if
 

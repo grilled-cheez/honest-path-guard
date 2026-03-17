@@ -3,6 +3,7 @@ import { Shield, Terminal, Monitor } from "lucide-react";
 import { motion } from "framer-motion";
 import FieldTerminal from "@/components/FieldTerminal";
 import CommandCenter from "@/components/CommandCenter";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { generateWaypoints, Waypoint } from "@/lib/waypoint-engine";
 import { createGenesisBlock, Block } from "@/lib/blockchain";
 
@@ -102,6 +103,7 @@ const Index = () => {
           <span className="font-mono text-xs tracking-wider">VIGILANCE</span>
         </button>
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <button
             onClick={() => setRole("FIELD_TERMINAL")}
             className={`font-mono text-[11px] px-3 py-1 rounded transition-colors ${role === "FIELD_TERMINAL" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}

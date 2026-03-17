@@ -6,6 +6,54 @@
 
 @layer base {
   :root {
+    /* Light theme */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 8%;
+
+    --primary: 142 71% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 5% 95%;
+    --secondary-foreground: 240 10% 18%;
+
+    --muted: 240 5% 95%;
+    --muted-foreground: 240 5% 45%;
+
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 240 10% 8%;
+
+    --border: 240 6% 88%;
+    --input: 240 6% 88%;
+    --ring: 142 71% 45%;
+
+    --radius: 0.25rem;
+
+    --sidebar-background: 240 4% 9%;
+    --sidebar-foreground: 0 0% 80%;
+    --sidebar-primary: 142 71% 45%;
+    --sidebar-primary-foreground: 240 6% 4%;
+    --sidebar-accent: 240 4% 14%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 240 4% 18%;
+    --sidebar-ring: 142 71% 45%;
+
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  .dark {
     --background: 240 6% 4%;
     --foreground: 0 0% 95%;
 
@@ -37,8 +85,6 @@
     --input: 240 4% 18%;
     --ring: 142 71% 45%;
 
-    --radius: 0.25rem;
-
     --sidebar-background: 240 4% 9%;
     --sidebar-foreground: 0 0% 80%;
     --sidebar-primary: 142 71% 45%;
@@ -47,9 +93,6 @@
     --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 240 4% 18%;
     --sidebar-ring: 142 71% 45%;
-
-    --font-mono: 'IBM Plex Mono', monospace;
-    --font-sans: 'IBM Plex Sans', sans-serif;
   }
 }
 

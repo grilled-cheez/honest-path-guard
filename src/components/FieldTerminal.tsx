@@ -127,11 +127,75 @@ const FieldTerminal = ({
       <div className="flex items-center justify-between border-b border-border pb-4">
         <div className="flex items-center gap-2">
           <Shield className="w-5 h-5 text-verified" />
-          <span className="font-mono text-sm font-semibold tracking-wider">VIGILANCE_TERMINAL_v1.0</span>
+          <span className="font-mono text-sm font-semibold tracking-wider">FIELD_WORKER_v1.0</span>
         </div>
         <span className="font-mono text-xs text-muted-foreground">
           {currentStep + 1}/{waypoints.length}
         </span>
+      </div>
+
+      {/* Static checklist */}
+      <div className="bg-card border border-border rounded p-4 space-y-3">
+        <div className="flex items-center justify-between">
+          <span className="font-mono text-xs tracking-widest text-muted-foreground">ROAD INSPECTION CHECKLIST (STATIC)</span>
+          <span className="font-mono text-[10px] text-muted-foreground">REF: PAPER CHECKLIST</span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="bg-secondary rounded p-3 space-y-2">
+            <span className="font-mono text-[10px] text-muted-foreground tracking-widest">PAVED ROAD INFO</span>
+            {["Street", "Type", "Annexed"].map((label) => (
+              <label key={label} className="flex items-center gap-2 font-mono text-[11px]">
+                <input type="checkbox" disabled className="accent-primary" />
+                <span>{label}</span>
+              </label>
+            ))}
+          </div>
+
+          <div className="bg-secondary rounded p-3 space-y-2">
+            <span className="font-mono text-[10px] text-muted-foreground tracking-widest">VEGETATION</span>
+            {["Vegetation present", "Encroachment / overgrowth"].map((label) => (
+              <label key={label} className="flex items-center gap-2 font-mono text-[11px]">
+                <input type="checkbox" disabled className="accent-primary" />
+                <span>{label}</span>
+              </label>
+            ))}
+          </div>
+
+          <div className="bg-secondary rounded p-3 space-y-2 sm:col-span-2">
+            <span className="font-mono text-[10px] text-muted-foreground tracking-widest">ROAD SURFACE CONDITION</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {[
+                "Surface defects",
+                "Surface deformation",
+                "Cracks",
+                "Patches & potholes",
+                "Drainage",
+              ].map((label) => (
+                <label key={label} className="flex items-center gap-2 font-mono text-[11px]">
+                  <input type="checkbox" disabled className="accent-primary" />
+                  <span>{label}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-secondary rounded p-3">
+          <span className="font-mono text-[10px] text-muted-foreground tracking-widest block mb-2">RATING SCALE</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 font-mono text-[11px] text-muted-foreground">
+            <div>1: FAILED</div>
+            <div>2: VERY POOR</div>
+            <div>3: POOR</div>
+            <div>4: FAIR</div>
+            <div>5: FAIR</div>
+            <div>6: GOOD</div>
+            <div>7: GOOD</div>
+            <div>8: VERY GOOD</div>
+            <div>9: EXCELLENT</div>
+            <div>10: EXCELLENT</div>
+          </div>
+        </div>
       </div>
 
       {/* Progress bar */}

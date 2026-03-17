@@ -44,7 +44,7 @@ const CommandCenter = ({ waypoints, chain, violations }: CommandCenterProps) => 
       <div className="flex items-center justify-between border-b border-border pb-4">
         <div className="flex items-center gap-3">
           <Shield className="w-5 h-5 text-verified" />
-          <h1 className="font-mono text-lg font-bold tracking-wider">SUPERVISOR_COMMAND_CENTER</h1>
+          <h1 className="font-mono text-lg font-bold tracking-wider">OFFICER_DASHBOARD</h1>
         </div>
         <div className="flex items-center gap-2">
           <div className={`w-2 h-2 rounded-full ${chainIntegrity.valid ? "bg-verified animate-pulse-glow" : "bg-rejected"}`} />

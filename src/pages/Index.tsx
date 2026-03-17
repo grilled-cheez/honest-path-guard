@@ -64,9 +64,9 @@ const Index = () => {
               className="group bg-card border border-border rounded p-6 text-left hover:border-primary transition-all hover:glow-verified"
             >
               <Terminal className="w-6 h-6 text-muted-foreground group-hover:text-verified transition-colors mb-4" />
-              <h3 className="font-mono text-sm font-bold mb-2 tracking-wider">FIELD_TERMINAL</h3>
+              <h3 className="font-mono text-sm font-bold mb-2 tracking-wider">FIELD_WORKER</h3>
               <p className="font-mono text-[11px] text-muted-foreground leading-relaxed">
-                Step-by-step data collection terminal. NFC verification, GPS-locked camera, sequential waypoint progression.
+                Step-by-step field workflow. NFC verification, GPS-locked camera, sequential waypoint progression.
               </p>
             </button>
             <button
@@ -74,7 +74,7 @@ const Index = () => {
               className="group bg-card border border-border rounded p-6 text-left hover:border-primary transition-all hover:glow-verified"
             >
               <Monitor className="w-6 h-6 text-muted-foreground group-hover:text-verified transition-colors mb-4" />
-              <h3 className="font-mono text-sm font-bold mb-2 tracking-wider">COMMAND_CENTER</h3>
+              <h3 className="font-mono text-sm font-bold mb-2 tracking-wider">OFFICER_DASHBOARD</h3>
               <p className="font-mono text-[11px] text-muted-foreground leading-relaxed">
                 Supervisor dashboard with GIS mapping, OPA rejection feed, blockchain audit trail, and visibility controls.
               </p>
@@ -106,13 +106,13 @@ const Index = () => {
             onClick={() => setRole("FIELD_TERMINAL")}
             className={`font-mono text-[11px] px-3 py-1 rounded transition-colors ${role === "FIELD_TERMINAL" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
           >
-            TERMINAL
+            FIELD WORKER
           </button>
           <button
             onClick={() => setRole("COMMAND_CENTER")}
             className={`font-mono text-[11px] px-3 py-1 rounded transition-colors ${role === "COMMAND_CENTER" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
           >
-            COMMAND
+            OFFICER DASHBOARD
           </button>
         </div>
       </div>

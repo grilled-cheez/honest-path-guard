@@ -14,7 +14,7 @@ Zero-trust road inspection demo app with:
 
 ### Install & start
 ```bash
-cd "/Users/pransan/Desktop/mtech/pravi_prob/honest-path-guard"
+cd ".../pravi_prob/honest-path-guard"
 npm install
 npm run dev
 ```
